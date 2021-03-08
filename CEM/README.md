@@ -1,35 +1,37 @@
-# What is eXplainable AI (XAI) -
-eXplainable AI or XAI in short, is basically a way to remove the ambiguity in machine learning methods and to enable transparency, so that the outcomes of black-box models can be easily understood by humans.  
-# Why XAI -
-With AI forming the future of all complex decision making, it is crucial to know how and why these decisions were made. Artificial Intelligence clearly enhances the speed, precision and effectiveness of human efforts. For example, AI techniques can be used to identify which transactions are likely to be fraudulent, as well as automate manually intense data management tasks in financial institutions, or it can be useful for face recognition in cameras.
+## About the project -
 
-However, consider an AI-powered medical diagnosis system that predicts cancer or heart disease in a patient previously diagnosed as healthy by medical experts.  Human life cannot be put to risk unless the predictions of the models are transparent and provide a legitimate reason for the result.  If an AI system provides counterintuitive advice when picking stocks or an AI autonomous vehicle drives unpredictably and causes a fatal collision despite normal road conditions, then in such cases, it’s essential to know why the model took the decisions and behaved in the way it did. This is where XAI comes into the picture. It has the potential to explain the underlying black-box processes and to provide trust in AI.
+The project gives an understanding of the explainable AI technique Contrastive Explanation Method(CEM). It is a model agnostic method which reveals the black box behaviour by informing about the the features that should be compulsorily presnt and the ones that must be necessarily absent to maintain the original prediction. In other words, it mentions how the absence of certain features or presnce of specif features may result to a different prediction than the original target class. Our aim is to unfold the model using this method in order to gather such information for better understanding of the the AI systems.
 
-# XAI Techniques -
+## Installation -
 
-XAI offers practical methods to look inside the black box. The following are some of them :
+It is a part of alibi package. You can simply run: pip install alibi
+Import the required package: import CEM
 
-1. ALE -  Accumulated Local Effects 
-2. Anchors
-3. CEM - Contrastive Explanation Methods 
-4. LIME - Locally Interpretable Model-Agnostic Explanations
-5. SHAP 
-6. Integrated Gradients
-7. Counterfactuals and Prototype Counterfactuals
+The method is applied to both classification and regresssion datasets.
 
-XAI techniques can help in reducing the complexity of AI systems to a great extent by providing the understandability and explainability to the models. All the above techniques help to explain the machine learning models in some way or the other.
 
-# Datasets used for the project -
-## Tabular Data:
+## Interpretation -
+
+It is the first method that gives the explanations of both what should be minimally present and what should be necessarily absent from the instance to be explained in order to maintain the original prediction class. In other words, the method finds the features like important pixels in an image that should be sufficiently present to predict the same class as on the original instance as well as identifies a minimal set of features that is enough to differentiate it from the nearest different class.
+
+The 2 kinds of explanations can be defined as follows:
+
+Pertinent Positives (PP): The Pertinent Positives explanation finds the features that are necessary for the model to predict the same output class as the predicted class. For example, this includes the important pixels of an image, the features having a high feature weight, etc. In MNIST we change the features from 1's to 0's until the most minimal outline of the number is present that is sufficient to predict the number. PP works similar to Anchors.
+
+Pertinent Negatives (PN): The Pertinent Negatives explanation finds the features that should be minimally and sufficiently absent from an instance whilst maintaining the original output class. PN works similar to Counterfactuals. To get a PN, changes are made such as changing the value of pixels from 0's to 1's in MNIST such that the prediction flips to a different outcome.
+
+In order to create interpretable PP’s and PN’s, feature-wise perturbation needs to be done in a meaningful way.
+
+Using CEM, we can improve the accuracy of the machine learning model by looking at cases of misclassified instances and then working on them using the explanations provided by CEM.
+
+## Datasets - 
+The technique is applied to the following datasets:
 - Heart Disease Dataset
 - The Iris Dataset
-- Boston Housing Prices
-
-## Image Data:
-- MNIST 
+- MNIST
 - Fashion MNIST
 
-## About Heart Disease dataset :
+### About Heart Disease dataset :
 
 Heart disease is among the biggest causes of deaths in the entire world. Prediction of a heart disease is one of the most important area
 in the healthcare sector. Heart disease refers to blockage or narrowing down of blood vessels, which can lead to chest pain or heart attack. The Heart Disease Cleveland UC Irvine dataset is based on prediction if a person has heart disease or not based on 13 attributes. It is re-processed from the original dataset having 76 features. In the following, we describe 13 features briefly:
@@ -80,7 +82,3 @@ ranges between 0-2.
 Here, defect symbolises an obstruction in optimum blood flow. 
 
 Figure depicts example instances of the heart disease dataset.
-
-# Conclusion - 
-
-Thus, XAI is important for AI to thrive in certain sectors like healthcare. The deployment of Explainable AI basically provides interpretability of the model which is required to increase the trust in machine learning models and AI software. Using this, health practitioners can diagnose diseases and can provide the right treatment to the patients easily. For instance, consider a heart patient and a model which predicts if the person is suffering from the heart disease. In this case, Explainable AI can explain why the model categorized the person to be ill or otherwise, which would in turn increase the reliability of AI.
