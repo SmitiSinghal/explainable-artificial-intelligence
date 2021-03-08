@@ -80,6 +80,7 @@ ranges between 0-2.
 Here, defect symbolises an obstruction in optimum blood flow. 
 
 Figure depicts example instances of the heart disease dataset.
+![dataset](https://user-images.githubusercontent.com/72971618/110315771-b85f3e80-802f-11eb-8556-3159c73f53ae.png)
 
 # Conclusion - 
 
